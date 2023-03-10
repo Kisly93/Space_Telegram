@@ -29,7 +29,8 @@ def main():
 
     img_space = os.listdir('images')
 
-    while send_img(token, chat_id, time_interval, img_space):
+    while True:
+        send_img(token, chat_id, time_interval, img_space)
         random.shuffle(img_space)
 
 
