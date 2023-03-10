@@ -45,7 +45,7 @@ def fetch_epic_photo(api_key, link_two, format_date, epic_image):
 def main():
     directory = Path(r'images').mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(
-        description='Введите количество фото'
+        description='С помощью скрипта можно скачать снимки NASA нашей планеты. Введите количество снимков: '
     )
     parser.add_argument('count', nargs='?', default='1', type=int)
     args = parser.parse_args()

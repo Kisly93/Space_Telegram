@@ -35,7 +35,7 @@ def get_latest_nasa_img(img_url):
 def main():
     directory = Path(r'images').mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(
-        description='Введите количество фото'
+        description='С помощью скрипта можно скачать снимки NASA, которые пуюликуюся каждый день. Введите количество снимков: '
     )
     parser.add_argument('count', nargs='?', default='5', type=int)
     args = parser.parse_args()

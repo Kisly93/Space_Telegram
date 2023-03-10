@@ -19,7 +19,7 @@ def fetch_spacex_last_launch(name, img):
 def main():
     directory = Path(r'images').mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(
-        description='Введите id запуска'
+        description='С помощью скрипта можно скачать снимки с запуска SpaceX. Введите id запуска: '
     )
     parser.add_argument('id', nargs='?', default='latest')
     args = parser.parse_args()
