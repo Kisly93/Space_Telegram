@@ -14,6 +14,7 @@ def get_nasa_images(api_key, count_photo):
     }
     link = 'https://api.nasa.gov/planetary/apod'
     response = requests.get(link, params=payload)
+    response.raise_for_status()
     return response.json()
 
 
