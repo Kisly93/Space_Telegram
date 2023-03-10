@@ -23,10 +23,10 @@ def main():
     )
     parser.add_argument('id', nargs='?', default='latest')
     args = parser.parse_args()
-    id_space = args.id
+    id_launch = args.id
     try:
-            fetch_space_links_id(id_space)
-            for num, img in enumerate(fetch_space_links_id(id_space)):
+            fetch_space_links_id(id_launch)
+            for num, img in enumerate(fetch_space_links_id(id_launch)):
                 name = f'space{num}.jpg'
                 fetch_spacex_last_launch(name, img)
 

@@ -27,15 +27,15 @@ def get_epic_img(api_key, epic_image_archive_url, format_date, epic_image):
 
 
 def cut_epic_img(url):
-    parsed_nasa = urlparse(url)
-    cropped_nasa = f"{parsed_nasa.path}"
-    unqoute_nasa = unquote(cropped_nasa)
-    split_nasa = os.path.split(unqoute_nasa)
-    return split_nasa[1]
+    parsed_url_nasa = urlparse(url)
+    cropped_url_nasa = f"{parsed_url_nasa.path}"
+    unqoute_url_nasa = unquote(cropped_url_nasa)
+    split_url_nasa = os.path.split(unqoute_url_nasa)
+    return split_url_nasa[1]
 
 
-def fetch_epic_photo(api_key, link_two, format_date, epic_image):
-    url = get_epic_img(api_key, link_two, format_date, epic_image)
+def fetch_epic_photo(api_key, epic_image_archive_url, format_date, epic_image):
+    url = get_epic_img(api_key, epic_image_archive_url, format_date, epic_image)
     response = requests.get(url)
     response.raise_for_status()
     with open(f'images/{cut_epic_img(url)}', 'wb') as file:
@@ -55,9 +55,9 @@ def main():
     latest_epic_image_url = 'https://api.nasa.gov/EPIC/api/natural'
     epic_image_archive_url = 'https://api.nasa.gov/EPIC/archive/natural'
     get_epic = fetch_epic_catalog(api_key, latest_epic_image_url)
-    for photo_info in get_epic[:count_photo]:
-        epic_date = photo_info['date']
-        epic_image = photo_info['image']
+    for image_details in get_epic[:count_photo]:
+        epic_date = image_details['date']
+        epic_image = image_details['image']
         old_date = datetime.datetime.strptime(epic_date, "%Y-%m-%d %H:%M:%S").date()
         format_date = datetime.datetime.strftime(old_date, "%Y/%m/%d")
         fetch_epic_photo(api_key, epic_image_archive_url, format_date, epic_image)

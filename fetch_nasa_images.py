@@ -42,8 +42,8 @@ def main():
     count_photo = args.count
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
-    for nasa_image_info in get_nasa_img(api_key, count_photo):
-        img_url = nasa_image_info['url']
+    for nasa_image_details in get_nasa_img(api_key, count_photo):
+        img_url = nasa_image_details['url']
         cut_nasa_img(img_url)
         get_latest_nasa_img(img_url)
 
