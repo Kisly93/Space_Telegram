@@ -16,8 +16,8 @@ pip install -r requirements.txt
 
 Для Telegram-бота нужно зарегистрироваться  у BotFather и получить токен. Больше информации можно получить на сайте [way23.ru](https://way23.ru/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%BE%D1%82%D0%B0-%D0%B2-telegram.html).
 ``` 
-NASA_API_KEY='ваш_ключ_API_от_NASA'
-TELEGRAM_BOT_TOKEN='ваш_токен_бота_Telegram'
+API_KEY_NASA='ваш_ключ_API_от_NASA'
+TOKEN_TELEGRAM='ваш_токен_бота_Telegram'
 ```
 ## Использование
 1.Для того, чтобы скачать фотографии последнего запуска космического корабля компании SpaceX, необходимо запустить скрипт fetch_spacex_images.py.
