@@ -49,13 +49,13 @@ def main():
     )
     parser.add_argument('count', nargs='?', default='1', type=int)
     args = parser.parse_args()
-    count_img = args.count
+    count_images = args.count
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
     latest_epic_image_url = 'https://api.nasa.gov/EPIC/api/natural'
     epic_image_archive_url = 'https://api.nasa.gov/EPIC/archive/natural'
     get_epic = fetch_epic_catalog(api_key, latest_epic_image_url)
-    for image_details in get_epic[:count_img]:
+    for image_details in get_epic[:count_images]:
         epic_date = image_details['date']
         epic_image = image_details['image']
         old_date = datetime.datetime.strptime(epic_date, "%Y-%m-%d %H:%M:%S").date()

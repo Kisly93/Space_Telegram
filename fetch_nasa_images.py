@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse
 
 
-def get_nasa_img(api_key, count_photo):
+def get_nasa_images(api_key, count_photo):
     payload = {
         'api_key': api_key,
         'count': count_photo
@@ -39,10 +39,10 @@ def main():
     )
     parser.add_argument('count', nargs='?', default='5', type=int)
     args = parser.parse_args()
-    count_img = args.count
+    count_images = args.count
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
-    for nasa_image_details in get_nasa_img(api_key, count_img):
+    for nasa_image_details in get_nasa_images(api_key, count_images):
         img_url = nasa_image_details['url']
         cut_nasa_url(img_url)
         save_nasa_img(img_url)
