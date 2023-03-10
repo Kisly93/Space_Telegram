@@ -25,7 +25,6 @@ def main():
     args = parser.parse_args()
     id_launch = args.id
     try:
-        fetch_spacex_links_id(id_launch)
         for num, img in enumerate(fetch_spacex_links_id(id_launch)):
             name = f'space{num}.jpg'
             save_spacex_img(name, img)
