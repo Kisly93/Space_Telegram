@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import argparse
 
 
-def fetch_epic_info(api_key, latest_epic_image_url):
+def fetch_epic_catalog(api_key, latest_epic_image_url):
     payload = {
         'api_key': api_key
     }
@@ -54,7 +54,7 @@ def main():
     api_key = os.getenv('API_KEY_NASA')
     latest_epic_image_url = 'https://api.nasa.gov/EPIC/api/natural'
     epic_image_archive_url = 'https://api.nasa.gov/EPIC/archive/natural'
-    get_epic = fetch_epic_info(api_key, latest_epic_image_url)
+    get_epic = fetch_epic_catalog(api_key, latest_epic_image_url)
     for photo_info in get_epic[:count_photo]:
         epic_date = photo_info['date']
         epic_image = photo_info['image']
