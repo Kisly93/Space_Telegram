@@ -51,7 +51,7 @@ def main():
     args = parser.parse_args()
     count_photo = args.count
     load_dotenv()
-    api_key = os.getenv('API_KEY_SPACE')
+    api_key = os.getenv('API_KEY_NASA_EPIC')
     latest_epic_image_url = 'https://api.nasa.gov/EPIC/api/natural'
     epic_image_archive_url = 'https://api.nasa.gov/EPIC/archive/natural'
     get_epic = fetch_epic_info(api_key, latest_epic_image_url)
