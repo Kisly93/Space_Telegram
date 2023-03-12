@@ -1,10 +1,9 @@
 import requests
 import os
-from urllib.parse import urlparse
-from urllib.parse import unquote
 from dotenv import load_dotenv
-from pathlib import Path
 import argparse
+from general_functions import get_file_extension
+from general_functions import save_img
 
 
 def get_nasa_images(api_key, count_photo):
@@ -18,23 +17,7 @@ def get_nasa_images(api_key, count_photo):
     return response.json()
 
 
-def get_file_extension(img_url):
-    parsed_nasa = urlparse(img_url)
-    cropped_nasa = f"{parsed_nasa.path}"
-    unqoute_nasa = unquote(cropped_nasa)
-    split_nasa = os.path.split(unqoute_nasa)
-    return split_nasa[1]
-
-
-def save_nasa_img(img_url):
-    response = requests.get(img_url)
-    response.raise_for_status()
-    with open(f'images/{get_file_extension(img_url)}', 'wb') as file:
-        file.write(response.content)
-
-
 def main():
-    directory = Path(r'images').mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(
         description='Скрипт скачивает снимки NASA, которые пуюликуюся каждый день '
     )
@@ -45,7 +28,8 @@ def main():
     api_key = os.getenv('API_KEY_NASA')
     for nasa_image_details in get_nasa_images(api_key, count_images):
         img_url = nasa_image_details['url']
-        save_nasa_img(img_url)
+        name_img = get_file_extension(img_url)
+        save_img(img_url, name_img)
 
 
 if __name__ == '__main__':

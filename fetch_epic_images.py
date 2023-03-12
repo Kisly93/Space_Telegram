@@ -1,11 +1,10 @@
 import requests
 import os
-from pathlib import Path
-from urllib.parse import urlparse
-from urllib.parse import unquote
 import datetime
 from dotenv import load_dotenv
 import argparse
+from general_functions import get_file_extension
+from general_functions import save_img
 
 
 def fetch_epic_catalog(api_key, latest_epic_image_url):
@@ -26,24 +25,7 @@ def get_epic_img(api_key, epic_image_archive_url, date_format, epic_image):
     return response.url
 
 
-def get_file_extension(url):
-    parsed_url_nasa = urlparse(url)
-    cropped_url_nasa = f"{parsed_url_nasa.path}"
-    unqoute_url_nasa = unquote(cropped_url_nasa)
-    split_url = os.path.split(unqoute_url_nasa)
-    return split_url[1]
-
-
-def save_epic_img(api_key, epic_image_archive_url, date_format, epic_image):
-    url = get_epic_img(api_key, epic_image_archive_url, date_format, epic_image)
-    response = requests.get(url)
-    response.raise_for_status()
-    with open(f'images/{get_file_extension(url)}', 'wb') as file:
-        file.write(response.content)
-
-
 def main():
-    directory = Path(r'images').mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(
         description='Cкрипт скачивает снимки NASA нашей планеты'
     )
@@ -60,7 +42,9 @@ def main():
         epic_image = image_details['image']
         old_date = datetime.datetime.strptime(epic_date, "%Y-%m-%d %H:%M:%S").date()
         date_format = datetime.datetime.strftime(old_date, "%Y/%m/%d")
-        save_epic_img(api_key, epic_image_archive_url, date_format, epic_image)
+        img_url = get_epic_img(api_key, epic_image_archive_url, date_format, epic_image)
+        name_img = get_file_extension(img_url)
+        save_img(img_url, name_img)
 
 
 if __name__ == '__main__':
