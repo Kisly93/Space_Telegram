@@ -45,9 +45,9 @@ def save_epic_img(api_key, epic_image_archive_url, date_format, epic_image):
 def main():
     directory = Path(r'images').mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(
-        description='С помощью скрипта можно скачать снимки NASA нашей планеты. Введите количество снимков: '
+        description='Cкрипт скачивает снимки NASA нашей планеты'
     )
-    parser.add_argument('count', nargs='?', default='1', type=int)
+    parser.add_argument('count', nargs='?', default='1', type=int, help='количество скачиваемых снимков')
     args = parser.parse_args()
     count_images = args.count
     load_dotenv()

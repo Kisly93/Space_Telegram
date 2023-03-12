@@ -19,9 +19,9 @@ def save_spacex_img(name, img):
 def main():
     directory = Path(r'images').mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(
-        description='С помощью скрипта можно скачать снимки с запуска SpaceX. Введите id запуска: '
+        description='Скрипт скачивает снимки с запуска SpaceX '
     )
-    parser.add_argument('id', nargs='?', default='latest')
+    parser.add_argument('id', nargs='?', default='latest', help='id запуска, если нет id - качает снимки с последнего запуска')
     args = parser.parse_args()
     id_launch = args.id
     try:

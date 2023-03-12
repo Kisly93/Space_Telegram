@@ -36,9 +36,9 @@ def save_nasa_img(img_url):
 def main():
     directory = Path(r'images').mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(
-        description='С помощью скрипта можно скачать снимки NASA, которые пуюликуюся каждый день. Введите количество снимков: '
+        description='Скрипт скачивает снимки NASA, которые пуюликуюся каждый день '
     )
-    parser.add_argument('count', nargs='?', default='5', type=int)
+    parser.add_argument('count', nargs='?', default='5', type=int, help='количество скачиваемых снимков')
     args = parser.parse_args()
     count_images = args.count
     load_dotenv()
