@@ -11,7 +11,8 @@ def fetch_epic_catalog(api_key, latest_epic_image_url):
     payload = {
         'api_key': api_key
     }
-    response = requests.get(latest_epic_image_url, params=payload)
+    url = latest_epic_image_url
+    response = requests.get(url, params=payload)
     response.raise_for_status()
     return response.json()
 
@@ -20,7 +21,8 @@ def get_epic_img(api_key, epic_image_archive_url, date_format, epic_image):
     payload = {
         'api_key': api_key
     }
-    response = requests.get(f'{epic_image_archive_url}/{date_format}/png/{epic_image}.png', params=payload)
+    url = f'{epic_image_archive_url}/{date_format}/png/{epic_image}.png'
+    response = requests.get(url, params=payload)
     response.raise_for_status()
     return response.url
 
