@@ -45,7 +45,6 @@ def main():
     api_key = os.getenv('API_KEY_NASA')
     for nasa_image_details in get_nasa_images(api_key, count_images):
         img_url = nasa_image_details['url']
-        get_file_extension(img_url)
         save_nasa_img(img_url)
 
 
