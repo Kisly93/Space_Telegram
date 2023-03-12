@@ -18,7 +18,7 @@ def get_nasa_images(api_key, count_photo):
     return response.json()
 
 
-def cut_nasa_url(img_url):
+def get_file_extension(img_url):
     parsed_nasa = urlparse(img_url)
     cropped_nasa = f"{parsed_nasa.path}"
     unqoute_nasa = unquote(cropped_nasa)
@@ -29,7 +29,7 @@ def cut_nasa_url(img_url):
 def save_nasa_img(img_url):
     response = requests.get(img_url)
     response.raise_for_status()
-    with open(f'images/{cut_nasa_url(img_url)}', 'wb') as file:
+    with open(f'images/{get_file_extension(img_url)}', 'wb') as file:
         file.write(response.content)
 
 
@@ -45,7 +45,7 @@ def main():
     api_key = os.getenv('API_KEY_NASA')
     for nasa_image_details in get_nasa_images(api_key, count_images):
         img_url = nasa_image_details['url']
-        cut_nasa_url(img_url)
+        get_file_extension(img_url)
         save_nasa_img(img_url)
 
 

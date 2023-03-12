@@ -26,19 +26,19 @@ def get_epic_img(api_key, epic_image_archive_url, date_format, epic_image):
     return response.url
 
 
-def cut_epic_url(url):
+def get_file_extension(url):
     parsed_url_nasa = urlparse(url)
     cropped_url_nasa = f"{parsed_url_nasa.path}"
     unqoute_url_nasa = unquote(cropped_url_nasa)
-    nasa_split_url = os.path.split(unqoute_url_nasa)
-    return nasa_split_url[1]
+    split_url = os.path.split(unqoute_url_nasa)
+    return split_url[1]
 
 
 def save_epic_img(api_key, epic_image_archive_url, date_format, epic_image):
     url = get_epic_img(api_key, epic_image_archive_url, date_format, epic_image)
     response = requests.get(url)
     response.raise_for_status()
-    with open(f'images/{cut_epic_url(url)}', 'wb') as file:
+    with open(f'images/{get_file_extension(url)}', 'wb') as file:
         file.write(response.content)
 
 
