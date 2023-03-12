@@ -23,7 +23,8 @@ def main():
     parser = argparse.ArgumentParser(
         description='Публикация фотографий в телеграм канале'
     )
-    parser.add_argument('sec', nargs='?', type=int, default=14000, help ='пауза перед публикацией следующей фотографии в секундах')
+    parser.add_argument('sec', nargs='?', type=int, default=14000,
+                        help='пауза перед публикацией следующей фотографии в секундах')
     args = parser.parse_args()
     time_interval = args.sec
 
