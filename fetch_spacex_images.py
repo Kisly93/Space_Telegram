@@ -17,9 +17,9 @@ def main():
     parser.add_argument('id', nargs='?', default='latest',
                         help='id запуска, если нет id - качает снимки с последнего запуска')
     args = parser.parse_args()
-    id_launch = args.id
+    launch_id = args.id
     try:
-        for num, img_url in enumerate(fetch_spacex_links_id(id_launch)):
+        for num, img_url in enumerate(fetch_spacex_links_id(launch_id)):
             name_img = f'space{num}.jpg'
             save_img(img_url, name_img)
 
