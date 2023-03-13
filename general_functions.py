@@ -5,11 +5,11 @@ import requests
 import os
 
 def get_file_extension(img_url):
-    parsed_nasa = urlparse(img_url)
-    cropped_nasa = f"{parsed_nasa.path}"
-    unqoute_nasa = unquote(cropped_nasa)
-    split_nasa = os.path.split(unqoute_nasa)
-    return split_nasa[1]
+    parsed_url_nasa = urlparse(img_url)
+    cropped_url_nasa = f"{parsed_url_nasa.path}"
+    unqoute_url_nasa = unquote(cropped_url_nasa)
+    split_url_nasa = os.path.split(unqoute_url_nasa)
+    return split_url_nasa[1]
 
 def save_img(img_url, name_img):
     directory = Path(r'images').mkdir(parents=True, exist_ok=True)
